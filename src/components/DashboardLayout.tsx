@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Radio, Disc3, Shield, LayoutDashboard, Music, ListMusic, Calendar, BarChart3, LogOut, Upload } from "lucide-react";
+import { Radio, Disc3, Shield, LayoutDashboard, Music, ListMusic, Calendar, BarChart3, LogOut, Upload, Wifi } from "lucide-react";
 
 const navByRole = {
   artist: [
@@ -17,6 +17,7 @@ const navByRole = {
     { to: "/dashboard/library", icon: Music, label: "Track Library" },
     { to: "/dashboard/playlists", icon: ListMusic, label: "Playlists" },
     { to: "/dashboard/schedule", icon: Calendar, label: "Schedule" },
+    { to: "/dashboard/broadcast", icon: Wifi, label: "Broadcast" },
   ],
   admin: [
     { to: "/dashboard", icon: LayoutDashboard, label: "Overview" },

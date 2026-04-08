@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ListMusic, Calendar, Music, Disc3 } from "lucide-react";
+import { ListMusic, Calendar, Music } from "lucide-react";
+import DJGoLive from "@/components/DJGoLive";
 
 export default function DJOverview() {
   const { user } = useAuth();
@@ -41,6 +42,8 @@ export default function DJOverview() {
           </Card>
         ))}
       </div>
+      </div>
+      <DJGoLive />
     </div>
   );
 }
