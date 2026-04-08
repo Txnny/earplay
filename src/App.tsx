@@ -15,6 +15,7 @@ import Playlists from "./pages/Playlists";
 import Schedule from "./pages/Schedule";
 import Broadcast from "./pages/Broadcast";
 import Listen from "./pages/Listen";
+import AdminReview from "./pages/AdminReview";
 import NotFound from "./pages/NotFound";
 import { ReactNode } from "react";
 
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/dashboard/playlists" element={<ProtectedRoute><Playlists /></ProtectedRoute>} />
             <Route path="/dashboard/schedule" element={<ProtectedRoute><Schedule /></ProtectedRoute>} />
             <Route path="/dashboard/broadcast" element={<ProtectedRoute><Broadcast /></ProtectedRoute>} />
+            <Route path="/dashboard/review" element={<ProtectedRoute><AdminReview /></ProtectedRoute>} />
             <Route path="/listen" element={<Listen />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
