@@ -127,8 +127,10 @@ export type Database = {
           ends_at: string
           id: string
           is_live: boolean | null
+          now_playing: string | null
           playlist_id: string | null
           starts_at: string
+          stream_url: string | null
           title: string
         }
         Insert: {
@@ -138,8 +140,10 @@ export type Database = {
           ends_at: string
           id?: string
           is_live?: boolean | null
+          now_playing?: string | null
           playlist_id?: string | null
           starts_at: string
+          stream_url?: string | null
           title: string
         }
         Update: {
@@ -149,8 +153,10 @@ export type Database = {
           ends_at?: string
           id?: string
           is_live?: boolean | null
+          now_playing?: string | null
           playlist_id?: string | null
           starts_at?: string
+          stream_url?: string | null
           title?: string
         }
         Relationships: [
@@ -204,6 +210,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      station_config: {
+        Row: {
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
       }
       tracks: {
         Row: {
