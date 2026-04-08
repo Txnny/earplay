@@ -16,7 +16,6 @@ import Schedule from "./pages/Schedule";
 import Broadcast from "./pages/Broadcast";
 import Listen from "./pages/Listen";
 import NotFound from "./pages/NotFound";
-import NotFound from "./pages/NotFound";
 import { ReactNode } from "react";
 
 const queryClient = new QueryClient();
