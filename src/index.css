@@ -78,4 +78,41 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(142,72%,50%)] to-[hsl(280,65%,60%)];
   }
+  /* Brutalist accents */
+  .font-mono-accent {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.625rem;
+  }
+  .border-brutal {
+    border: 1px solid hsl(var(--border));
+    border-radius: 2px;
+  }
+  .card-brutal {
+    @apply border-brutal bg-card/50;
+    padding: 14px;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: hsl(var(--primary));
+    border-bottom: 1px solid hsl(var(--border) / 0.4);
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+  }
+  .signal-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: hsl(var(--primary));
+    animation: pulse-signal 1.5s infinite;
+  }
+  @keyframes pulse-signal {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
 }

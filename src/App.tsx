@@ -17,6 +17,8 @@ import Broadcast from "./pages/Broadcast";
 import Listen from "./pages/Listen";
 import AdminReview from "./pages/AdminReview";
 import AdminSettings from "./pages/AdminSettings";
+import AdminAnalytics from "./pages/AdminAnalytics";
+import CueSheetExport from "./pages/CueSheetExport";
 import Pricing from "./pages/Pricing";
 import NotFound from "./pages/NotFound";
 import { ReactNode } from "react";
@@ -50,6 +52,8 @@ const App = () => (
             <Route path="/dashboard/broadcast" element={<ProtectedRoute><Broadcast /></ProtectedRoute>} />
             <Route path="/dashboard/review" element={<ProtectedRoute><AdminReview /></ProtectedRoute>} />
             <Route path="/dashboard/settings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>} />
+            <Route path="/dashboard/admin-analytics" element={<ProtectedRoute><AdminAnalytics /></ProtectedRoute>} />
+            <Route path="/dashboard/cue-sheets" element={<ProtectedRoute><CueSheetExport /></ProtectedRoute>} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/listen" element={<Listen />} />
             <Route path="*" element={<NotFound />} />

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Radio, Disc3, Shield, LayoutDashboard, Music, ListMusic, Calendar, BarChart3, LogOut, Upload, Wifi, ClipboardCheck, Settings } from "lucide-react";
+import { Radio, Disc3, Shield, LayoutDashboard, Music, ListMusic, Calendar, BarChart3, LogOut, Upload, Wifi, ClipboardCheck, Settings, Download, PieChart } from "lucide-react";
 
 const navByRole = {
   artist: [
@@ -23,7 +23,8 @@ const navByRole = {
     { to: "/dashboard", icon: LayoutDashboard, label: "Overview" },
     { to: "/dashboard/review", icon: ClipboardCheck, label: "Track Review" },
     { to: "/dashboard/tracks", icon: Music, label: "All Tracks" },
-    { to: "/dashboard/analytics", icon: BarChart3, label: "Analytics" },
+    { to: "/dashboard/admin-analytics", icon: PieChart, label: "Analytics" },
+    { to: "/dashboard/cue-sheets", icon: Download, label: "Cue Sheets" },
     { to: "/dashboard/settings", icon: Settings, label: "Settings" },
   ],
 };
