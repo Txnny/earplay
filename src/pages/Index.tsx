@@ -22,6 +22,12 @@ export default function Index() {
         <div className="container flex h-16 items-center justify-between">
           <span className="text-xl font-bold tracking-tight text-gradient">WAVEFORM</span>
           <div className="flex items-center gap-4">
+            <Link to="/listen">
+              <Button variant="ghost" size="sm" className="gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-destructive animate-pulse" />
+                Listen Live
+              </Button>
+            </Link>
             <Link to="/auth">
               <Button variant="ghost" size="sm">Sign In</Button>
             </Link>
