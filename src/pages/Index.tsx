@@ -28,6 +28,9 @@ export default function Index() {
                 Listen Live
               </Button>
             </Link>
+            <Link to="/pricing">
+              <Button variant="ghost" size="sm">Pricing</Button>
+            </Link>
             <Link to="/auth">
               <Button variant="ghost" size="sm">Sign In</Button>
             </Link>
