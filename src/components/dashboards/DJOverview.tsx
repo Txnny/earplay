@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ListMusic, Calendar, Music } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ListMusic, Calendar, Music, Wifi } from "lucide-react";
 import DJGoLive from "@/components/DJGoLive";
 
 export default function DJOverview() {
@@ -21,28 +21,48 @@ export default function DJOverview() {
   }, [user]);
 
   const cards = [
-    { label: "My Playlists", value: stats.playlists, icon: ListMusic },
-    { label: "Scheduled Shows", value: stats.shows, icon: Calendar },
-    { label: "Available Tracks", value: stats.approvedTracks, icon: Music },
+    { label: "MY PLAYLISTS", value: stats.playlists, icon: ListMusic },
+    { label: "SCHEDULED SHOWS", value: stats.shows, icon: Calendar },
+    { label: "AVAILABLE TRACKS", value: stats.approvedTracks, icon: Music },
   ];
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">DJ Dashboard</h1>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="flex items-center gap-3">
+        <span className="signal-dot" />
+        <h1 className="text-2xl font-bold tracking-tight">DJ Dashboard</h1>
+      </div>
+
+      <div className="grid grid-cols-3 gap-3">
         {cards.map((c) => (
-          <Card key={c.label} className="border-border/50 bg-card/50">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">{c.label}</CardTitle>
-              <c.icon className="w-4 h-4 text-primary" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{c.value}</div>
-            </CardContent>
-          </Card>
+          <div key={c.label} className="card-brutal">
+            <div className="font-mono-accent text-muted-foreground mb-2">{c.label}</div>
+            <div className="text-xl font-bold">{c.value}</div>
+          </div>
         ))}
       </div>
-      <DJGoLive />
+
+      <div className="grid md:grid-cols-2 gap-4">
+        <DJGoLive />
+        <div className="space-y-3">
+          <div className="section-label">Quick Links</div>
+          {[
+            { to: "/dashboard/library", icon: Music, label: "Browse Track Library", desc: "Find approved tracks for your sets" },
+            { to: "/dashboard/playlists", icon: ListMusic, label: "Manage Playlists", desc: "Create & organize your playlists" },
+            { to: "/dashboard/schedule", icon: Calendar, label: "Show Schedule", desc: "Plan & publish your upcoming shows" },
+          ].map((l) => (
+            <Link key={l.to} to={l.to}>
+              <div className="card-brutal hover:border-primary/30 transition-colors cursor-pointer flex items-center gap-3">
+                <l.icon className="w-4 h-4 text-primary shrink-0" />
+                <div>
+                  <h4 className="font-mono-accent text-foreground text-xs">{l.label}</h4>
+                  <p className="text-xs text-muted-foreground">{l.desc}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

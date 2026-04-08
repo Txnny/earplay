@@ -20,6 +20,7 @@ import AdminSettings from "./pages/AdminSettings";
 import AdminAnalytics from "./pages/AdminAnalytics";
 import CueSheetExport from "./pages/CueSheetExport";
 import Pricing from "./pages/Pricing";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import { ReactNode } from "react";
 
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/dashboard/playlists" element={<ProtectedRoute><Playlists /></ProtectedRoute>} />
             <Route path="/dashboard/schedule" element={<ProtectedRoute><Schedule /></ProtectedRoute>} />
             <Route path="/dashboard/broadcast" element={<ProtectedRoute><Broadcast /></ProtectedRoute>} />
+            <Route path="/dashboard/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/dashboard/review" element={<ProtectedRoute><AdminReview /></ProtectedRoute>} />
             <Route path="/dashboard/settings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>} />
             <Route path="/dashboard/admin-analytics" element={<ProtectedRoute><AdminAnalytics /></ProtectedRoute>} />
