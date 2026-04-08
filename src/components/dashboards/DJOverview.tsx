@@ -42,7 +42,6 @@ export default function DJOverview() {
           </Card>
         ))}
       </div>
-      </div>
       <DJGoLive />
     </div>
   );
