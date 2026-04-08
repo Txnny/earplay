@@ -24,6 +24,7 @@ const navByRole = {
     { to: "/dashboard/review", icon: ClipboardCheck, label: "Track Review" },
     { to: "/dashboard/tracks", icon: Music, label: "All Tracks" },
     { to: "/dashboard/analytics", icon: BarChart3, label: "Analytics" },
+    { to: "/dashboard/settings", icon: Settings, label: "Settings" },
   ],
 };
 
