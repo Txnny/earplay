@@ -13,6 +13,8 @@ import SpinAnalytics from "./pages/SpinAnalytics";
 import TrackLibrary from "./pages/TrackLibrary";
 import Playlists from "./pages/Playlists";
 import Schedule from "./pages/Schedule";
+import Broadcast from "./pages/Broadcast";
+import Listen from "./pages/Listen";
 import NotFound from "./pages/NotFound";
 import { ReactNode } from "react";
 
@@ -42,6 +44,8 @@ const App = () => (
             <Route path="/dashboard/library" element={<ProtectedRoute><TrackLibrary /></ProtectedRoute>} />
             <Route path="/dashboard/playlists" element={<ProtectedRoute><Playlists /></ProtectedRoute>} />
             <Route path="/dashboard/schedule" element={<ProtectedRoute><Schedule /></ProtectedRoute>} />
+            <Route path="/dashboard/broadcast" element={<ProtectedRoute><Broadcast /></ProtectedRoute>} />
+            <Route path="/listen" element={<Listen />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
