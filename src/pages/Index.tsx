@@ -25,7 +25,7 @@ export default function Index() {
         <div className="container flex h-16 items-center justify-between">
           <span className="flex items-center gap-2">
             <span className="signal-dot" />
-            <span className="text-xl font-bold tracking-[0.2em] uppercase">WAVEFORM</span>
+            <span className="text-xl font-bold tracking-[0.2em] uppercase">SURFACED RADIO</span>
           </span>
           <div className="flex items-center gap-4">
             <Link to="/listen">
@@ -139,7 +139,7 @@ export default function Index() {
       {/* Footer */}
       <footer className="py-8 border-t border-border/40 text-center">
         <div className="container font-mono-accent text-muted-foreground">
-          WAVEFORM · BUILT FOR THE ARTISTS THE ALGORITHM IGNORES
+          SURFACED RADIO · BUILT FOR THE ARTISTS THE ALGORITHM IGNORES
         </div>
       </footer>
     </div>

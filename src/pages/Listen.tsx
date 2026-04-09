@@ -51,7 +51,7 @@ export default function Listen() {
       {/* Nav */}
       <nav className="fixed top-0 inset-x-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="container flex h-16 items-center justify-between">
-          <Link to="/" className="text-xl font-bold tracking-tight text-gradient">WAVEFORM</Link>
+          <Link to="/" className="text-xl font-bold tracking-tight text-gradient">SURFACED RADIO</Link>
           <div className="flex items-center gap-4">
             <Link to="/pricing"><Button variant="ghost" size="sm">Pricing</Button></Link>
             <Link to="/auth"><Button variant="ghost" size="sm">Sign In</Button></Link>

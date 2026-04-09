@@ -18,7 +18,7 @@ interface ConfigEntry {
 const KNOWN_KEYS = [
   { key: "stream_url", label: "Stream URL", placeholder: "https://your-azuracast.example.com/radio/8000/main.mp3" },
   { key: "azuracast_api_url", label: "AzuraCast API URL", placeholder: "https://your-azuracast.example.com" },
-  { key: "station_name", label: "Station Name", placeholder: "WAVEFORM Radio" },
+  { key: "station_name", label: "Station Name", placeholder: "Surfaced Radio" },
 ];
 
 export default function AdminSettings() {
