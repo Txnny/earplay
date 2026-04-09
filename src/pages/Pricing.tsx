@@ -26,7 +26,7 @@ const TIERS = {
     name: "Premium",
     price: "$9.99",
     period: "/mo",
-    description: "The full WAVEFORM experience",
+    description: "The full Surfaced Radio experience",
     icon: Crown,
     price_id: "price_1TK0iwHRu80c4uuWF8BBkTcB",
     product_id: "prod_UIbwXxekmyxLO3",
@@ -89,7 +89,7 @@ export default function Pricing() {
         <div className="container flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <span className="signal-dot" />
-            <span className="text-xl font-bold tracking-[0.2em] uppercase">WAVEFORM</span>
+            <span className="text-xl font-bold tracking-[0.2em] uppercase">SURFACED RADIO</span>
           </Link>
           <div className="flex items-center gap-4">
             <Link to="/listen"><Button variant="ghost" size="sm" className="font-mono-accent">Listen</Button></Link>

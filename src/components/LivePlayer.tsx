@@ -97,7 +97,7 @@ export default function LivePlayer() {
           ) : (
             <div className="flex items-center gap-2 text-muted-foreground">
               <Radio className="w-4 h-4" />
-              <span className="text-sm">WAVEFORM Radio</span>
+              <span className="text-sm">Surfaced Radio</span>
             </div>
           )}
         </div>

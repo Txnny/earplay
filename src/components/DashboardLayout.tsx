@@ -46,7 +46,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       {/* Sidebar */}
       <aside className="w-64 border-r border-border/40 bg-sidebar flex flex-col">
         <div className="p-4 border-b border-border/40">
-          <Link to="/" className="text-lg font-bold text-gradient">WAVEFORM</Link>
+          <Link to="/" className="text-lg font-bold text-gradient">SURFACED RADIO</Link>
         </div>
         <nav className="flex-1 p-3 space-y-1">
           {links.map((l) => (
