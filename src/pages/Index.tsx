@@ -28,7 +28,7 @@ export default function Index() {
             <span className="text-xl font-bold tracking-[0.2em] uppercase">SURFACED RADIO</span>
           </span>
           <div className="flex items-center gap-4">
-            <a href="http://40.233.87.31/public/selectsoundsradio" target="_blank" rel="noopener noreferrer">
+            <a href="https://stream.surfacedradio.com/public/selectsoundsradio" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="sm" className="gap-1.5 font-mono-accent">
                 Listen Live
               </Button>
@@ -65,7 +65,7 @@ export default function Index() {
                   Get Started <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
-              <a href="http://40.233.87.31/public/selectsoundsradio" target="_blank" rel="noopener noreferrer">
+              <a href="https://stream.surfacedradio.com/public/selectsoundsradio" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="gap-2">
                   <span className="signal-dot" /> Listen Now
                 </Button>
