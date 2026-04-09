@@ -166,7 +166,7 @@ export default function Pricing() {
                   </Button>
                 ) : (
                   <Button variant="outline" className="w-full" asChild>
-                    <Link to="/listen">Start Listening</Link>
+                    <a href="http://40.233.87.31/public/selectsoundsradio" target="_blank" rel="noopener noreferrer">Start Listening</a>
                   </Button>
                 )}
                 {subscription.subscribed && isCurrent && subscription.subscriptionEnd && (
