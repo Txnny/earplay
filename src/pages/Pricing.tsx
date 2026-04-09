@@ -92,7 +92,7 @@ export default function Pricing() {
             <span className="text-xl font-bold tracking-[0.2em] uppercase">SURFACED RADIO</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/listen"><Button variant="ghost" size="sm" className="font-mono-accent">Listen</Button></Link>
+            <a href="http://40.233.87.31/public/selectsoundsradio" target="_blank" rel="noopener noreferrer"><Button variant="ghost" size="sm" className="font-mono-accent">Listen</Button></a>
             {session ? (
               <Link to="/dashboard"><Button variant="ghost" size="sm">Dashboard</Button></Link>
             ) : (
@@ -166,7 +166,7 @@ export default function Pricing() {
                   </Button>
                 ) : (
                   <Button variant="outline" className="w-full" asChild>
-                    <Link to="/listen">Start Listening</Link>
+                    <a href="http://40.233.87.31/public/selectsoundsradio" target="_blank" rel="noopener noreferrer">Start Listening</a>
                   </Button>
                 )}
                 {subscription.subscribed && isCurrent && subscription.subscriptionEnd && (

@@ -28,11 +28,11 @@ export default function Index() {
             <span className="text-xl font-bold tracking-[0.2em] uppercase">SURFACED RADIO</span>
           </span>
           <div className="flex items-center gap-4">
-            <Link to="/listen">
+            <a href="http://40.233.87.31/public/selectsoundsradio" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="sm" className="gap-1.5 font-mono-accent">
                 Listen Live
               </Button>
-            </Link>
+            </a>
             <Link to="/pricing">
               <Button variant="ghost" size="sm" className="font-mono-accent">Pricing</Button>
             </Link>
@@ -65,11 +65,11 @@ export default function Index() {
                   Get Started <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
-              <Link to="/listen">
+              <a href="http://40.233.87.31/public/selectsoundsradio" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="gap-2">
                   <span className="signal-dot" /> Listen Now
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
