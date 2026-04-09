@@ -19,7 +19,7 @@ export default function LivePlayer() {
         .select("value")
         .eq("key", "stream_url")
         .single();
-      if (config) setStreamUrl(config.value);
+      setStreamUrl(config?.value ?? "https://stream.surfacedradio.com/listen/selectsoundsradio/radio.mp3");
 
       const { data: show } = await supabase
         .from("shows")
