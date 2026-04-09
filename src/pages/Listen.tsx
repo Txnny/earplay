@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import LivePlayer from "@/components/LivePlayer";
-import { Radio, Calendar } from "lucide-react";
+import { Radio, Calendar, Users, ExternalLink } from "lucide-react";
+import { useNowPlaying } from "@/hooks/useNowPlaying";
 
 interface Show {
   id: string;
@@ -16,7 +16,6 @@ interface Show {
   now_playing: string | null;
 }
 
-// 24-hour programming grid from concept
 const DEFAULT_GRID = [
   { time: "00:00 – 06:00", title: "The Overnight Drift", desc: "Ambient, lo-fi, experimental — algorithmically curated from submissions" },
   { time: "06:00 – 10:00", title: "Morning Frequency", desc: "Soul, jazz, afrobeats, global sounds — hosted, with artist spotlights" },
@@ -27,9 +26,12 @@ const DEFAULT_GRID = [
   { time: "23:00 – 00:00", title: "Last Transmission", desc: "Weekly recap, top-spun tracks, upcoming artist news" },
 ];
 
+const DJ_URL = "https://stream.surfacedradio.com/public/selectsoundsradio/dj";
+const SCHEDULE_URL = "https://stream.surfacedradio.com/public/selectsoundsradio/schedule";
+
 export default function Listen() {
   const [shows, setShows] = useState<Show[]>([]);
-  const [liveShow, setLiveShow] = useState<Show | null>(null);
+  const np = useNowPlaying();
 
   useEffect(() => {
     const load = async () => {
@@ -39,12 +41,14 @@ export default function Listen() {
         .gte("ends_at", new Date().toISOString())
         .order("starts_at", { ascending: true })
         .limit(20);
-      const all = data ?? [];
-      setLiveShow(all.find((s) => s.is_live) ?? null);
-      setShows(all.filter((s) => !s.is_live));
+      setShows(data ?? []);
     };
     load();
   }, []);
+
+  const nowPlayingText = np?.songTitle
+    ? `${np.songArtist} — ${np.songTitle}`
+    : null;
 
   return (
     <div className="min-h-screen pb-20">
@@ -60,25 +64,47 @@ export default function Listen() {
       </nav>
 
       <div className="pt-24 container max-w-3xl space-y-10">
-        {/* Live Now */}
-        {liveShow ? (
+        {/* Live Now — from AzuraCast API */}
+        {np?.isOnAir ? (
           <div className="border-l-[3px] border-primary pl-4 space-y-3">
             <div className="inline-flex items-center gap-2">
               <span className="signal-dot" />
-              <span className="font-mono-accent text-primary">LIVE NOW</span>
+              <span className="font-mono-accent text-primary">ON AIR</span>
+              {np.listeners > 0 && (
+                <span className="inline-flex items-center gap-1 text-xs text-muted-foreground ml-2">
+                  <Users className="w-3 h-3" /> {np.listeners}
+                </span>
+              )}
             </div>
-            <h2 className="text-3xl font-bold tracking-tight">{liveShow.title}</h2>
-            {liveShow.now_playing && (
-              <p className="text-muted-foreground">🎵 {liveShow.now_playing}</p>
+            <h2 className="text-3xl font-bold tracking-tight">{np.streamerName}</h2>
+            {nowPlayingText && (
+              <p className="text-muted-foreground">🎵 {nowPlayingText}</p>
+            )}
+            {np.albumArt && (
+              <img src={np.albumArt} alt="Album art" className="w-24 h-24 rounded-md object-cover" />
             )}
           </div>
         ) : (
           <div className="border-l-[3px] border-muted pl-4 space-y-3">
             <Radio className="w-8 h-8 text-muted-foreground" />
-            <h2 className="text-2xl font-bold">No show live right now</h2>
+            <h2 className="text-2xl font-bold">Off Air</h2>
             <p className="text-muted-foreground text-sm">Check the schedule below for upcoming shows.</p>
           </div>
         )}
+
+        {/* Quick links */}
+        <div className="flex gap-3 flex-wrap">
+          <a href={DJ_URL} target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="sm" className="gap-1.5">
+              DJ Connect <ExternalLink className="w-3 h-3" />
+            </Button>
+          </a>
+          <a href={SCHEDULE_URL} target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" size="sm" className="gap-1.5">
+              Full Schedule <ExternalLink className="w-3 h-3" />
+            </Button>
+          </a>
+        </div>
 
         {/* Upcoming Scheduled Shows */}
         {shows.length > 0 && (
