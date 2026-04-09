@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
-import { Music, Users, BarChart3, Disc3, ClipboardCheck, Settings, PieChart, Download } from "lucide-react";
+import { Music, Users, BarChart3, Disc3, ClipboardCheck, Settings, PieChart, Download, Mic, Tag, Ticket, Package, GraduationCap, Radio } from "lucide-react";
 
 const RATE_PER_SPIN = 0.0024;
 
@@ -62,6 +62,23 @@ export default function AdminOverview() {
               </div>
             </div>
           </Link>
+        ))}
+      </div>
+
+      <div className="section-label">Revenue Streams</div>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        {[
+          { icon: Mic, label: "Listener Memberships" },
+          { icon: Tag, label: "Brand Sponsorships" },
+          { icon: Ticket, label: "Live Event Tie-ins" },
+          { icon: Package, label: "Artist Promo Packages" },
+          { icon: GraduationCap, label: "DJ Workshop Fees" },
+          { icon: Radio, label: "White-Label Streams" },
+        ].map((r) => (
+          <div key={r.label} className="card-brutal text-center space-y-2">
+            <r.icon className="w-5 h-5 text-primary mx-auto" />
+            <div className="font-mono-accent text-muted-foreground">{r.label}</div>
+          </div>
         ))}
       </div>
     </div>

@@ -114,27 +114,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Revenue Model */}
-      <section className="py-20 border-t border-border/40">
-        <div className="container">
-          <div className="section-label">Revenue Model</div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mt-4">
-            {[
-              { emoji: "🎙", label: "Listener Memberships" },
-              { emoji: "🏷", label: "Brand Sponsorships" },
-              { emoji: "🎟", label: "Live Event Tie-ins" },
-              { emoji: "📦", label: "Artist Promo Packages" },
-              { emoji: "🎓", label: "DJ Workshop Fees" },
-              { emoji: "📡", label: "White-Label Streams" },
-            ].map((r) => (
-              <div key={r.label} className="card-brutal text-center space-y-2">
-                <div className="text-xl">{r.emoji}</div>
-                <div className="font-mono-accent text-muted-foreground">{r.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="py-8 border-t border-border/40 text-center">
