@@ -1,9 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 const STREAM_URL = "https://stream.surfacedradio.com/listen/selectsoundsradio/radio.mp3";
-const PUBLIC_STATION_PAGE = "https://stream.surfacedradio.com/public/selectsoundsradio";
-const WEB_DJ_PAGE = "https://stream.surfacedradio.com/public/selectsoundsradio/dj";
-const SCHEDULE_PAGE = "https://stream.surfacedradio.com/public/selectsoundsradio/schedule";
 const NOW_PLAYING_API = "https://stream.surfacedradio.com/api/nowplaying";
 const STATION_SHORTCODE = "selectsoundsradio";
 
@@ -143,40 +140,12 @@ export default function ListenPage() {
           </label>
         </div>
 
-        <div className="flex flex-wrap gap-3">
-          <a
-            href={WEB_DJ_PAGE}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-black hover:opacity-90"
-          >
-            Go Live / DJ Login
-          </a>
-
-          <a
-            href={PUBLIC_STATION_PAGE}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold"
-          >
-            Public Station Page
-          </a>
-        </div>
-
         {!isOnAir && (
           <div className="mt-6 rounded-xl border border-amber-300/30 bg-amber-200/10 p-4">
             <p className="mb-2 text-sm font-semibold">No show live right now</p>
-            <p className="mb-3 text-sm opacity-90">
-              Check upcoming programming on the schedule.
+            <p className="text-sm opacity-90">
+              AutoDJ is playing. Hit play to listen!
             </p>
-            <a
-              href={SCHEDULE_PAGE}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold underline"
-            >
-              View Schedule
-            </a>
           </div>
         )}
 
