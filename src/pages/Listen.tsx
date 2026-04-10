@@ -1,9 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 const STREAM_URL = "https://stream.surfacedradio.com/listen/selectsoundsradio/radio.mp3";
-const PUBLIC_STATION_PAGE = "https://stream.surfacedradio.com/public/selectsoundsradio";
-const WEB_DJ_PAGE = "https://stream.surfacedradio.com/public/selectsoundsradio/dj";
-const SCHEDULE_PAGE = "https://stream.surfacedradio.com/public/selectsoundsradio/schedule";
 const NOW_PLAYING_API = "https://stream.surfacedradio.com/api/nowplaying";
 const STATION_SHORTCODE = "selectsoundsradio";
 
