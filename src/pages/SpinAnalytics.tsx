@@ -126,7 +126,7 @@ export default function SpinAnalytics() {
                 step: "01",
                 title: "Register with a PRO",
                 desc: "Sign up with ASCAP, BMI, SESAC (US), SOCAN (CA), PRS (UK), or your national PRO to collect performance royalties.",
-                link: "https://www.soundexchange.com/artist-copyright-owner/enroll/",
+                link: "https://www.soundexchange.com/register/",
                 linkLabel: "SoundExchange Enrollment",
               },
               {
