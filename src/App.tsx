@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
+import { ActiveRoleProvider } from "@/hooks/useActiveRole";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
@@ -40,26 +41,28 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/dashboard/submit" element={<ProtectedRoute><SubmitTrack /></ProtectedRoute>} />
-            <Route path="/dashboard/tracks" element={<ProtectedRoute><MyTracks /></ProtectedRoute>} />
-            <Route path="/dashboard/analytics" element={<ProtectedRoute><SpinAnalytics /></ProtectedRoute>} />
-            <Route path="/dashboard/library" element={<ProtectedRoute><TrackLibrary /></ProtectedRoute>} />
-            <Route path="/dashboard/playlists" element={<ProtectedRoute><Playlists /></ProtectedRoute>} />
-            <Route path="/dashboard/schedule" element={<ProtectedRoute><Schedule /></ProtectedRoute>} />
-            <Route path="/dashboard/broadcast" element={<ProtectedRoute><Broadcast /></ProtectedRoute>} />
-            <Route path="/dashboard/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            <Route path="/dashboard/review" element={<ProtectedRoute><AdminReview /></ProtectedRoute>} />
-            <Route path="/dashboard/settings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>} />
-            <Route path="/dashboard/admin-analytics" element={<ProtectedRoute><AdminAnalytics /></ProtectedRoute>} />
-            <Route path="/dashboard/cue-sheets" element={<ProtectedRoute><CueSheetExport /></ProtectedRoute>} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/listen" element={<Listen />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <ActiveRoleProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/dashboard/submit" element={<ProtectedRoute><SubmitTrack /></ProtectedRoute>} />
+              <Route path="/dashboard/tracks" element={<ProtectedRoute><MyTracks /></ProtectedRoute>} />
+              <Route path="/dashboard/analytics" element={<ProtectedRoute><SpinAnalytics /></ProtectedRoute>} />
+              <Route path="/dashboard/library" element={<ProtectedRoute><TrackLibrary /></ProtectedRoute>} />
+              <Route path="/dashboard/playlists" element={<ProtectedRoute><Playlists /></ProtectedRoute>} />
+              <Route path="/dashboard/schedule" element={<ProtectedRoute><Schedule /></ProtectedRoute>} />
+              <Route path="/dashboard/broadcast" element={<ProtectedRoute><Broadcast /></ProtectedRoute>} />
+              <Route path="/dashboard/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+              <Route path="/dashboard/review" element={<ProtectedRoute><AdminReview /></ProtectedRoute>} />
+              <Route path="/dashboard/settings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>} />
+              <Route path="/dashboard/admin-analytics" element={<ProtectedRoute><AdminAnalytics /></ProtectedRoute>} />
+              <Route path="/dashboard/cue-sheets" element={<ProtectedRoute><CueSheetExport /></ProtectedRoute>} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/listen" element={<Listen />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ActiveRoleProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
