@@ -8,12 +8,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { CheckCircle, XCircle, Clock, Music, Loader2 } from "lucide-react";
+import AudioPreview from "@/components/AudioPreview";
 
 interface Track {
   id: string;
   title: string;
   genre: string | null;
   notes: string | null;
+  file_url: string | null;
   status: string;
   submitted_at: string;
   artist_id: string;
@@ -32,7 +34,7 @@ export default function AdminReview() {
     setLoading(true);
     let query = supabase
       .from("tracks")
-      .select("id, title, genre, notes, status, submitted_at, artist_id")
+      .select("id, title, genre, notes, file_url, status, submitted_at, artist_id")
       .order("submitted_at", { ascending: false });
 
     if (filter !== "all") {
@@ -137,6 +139,7 @@ export default function AdminReview() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
+                  <AudioPreview fileUrl={track.file_url} />
                   {track.notes && (
                     <div className="text-sm bg-secondary/30 rounded-lg p-3">
                       <span className="text-xs font-medium text-muted-foreground block mb-1">Artist Notes</span>
