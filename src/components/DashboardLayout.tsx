@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useActiveRole } from "@/hooks/useActiveRole";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Radio, Disc3, Shield, LayoutDashboard, Music, ListMusic, Calendar, BarChart3, LogOut, Upload, Wifi, ClipboardCheck, Settings, Download, PieChart, UserCircle } from "lucide-react";
@@ -31,15 +32,17 @@ const navByRole = {
 };
 
 const roleIcon = { artist: Radio, dj: Disc3, admin: Shield };
+const roleLabel = { artist: "Artist", dj: "DJ", admin: "Admin" };
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  const { user, roles, signOut, hasRole } = useAuth();
+  const { user, roles, signOut } = useAuth();
+  const { activeRole, setActiveRole } = useActiveRole();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const activeRole = roles[0] ?? "artist";
-  const RoleIcon = roleIcon[activeRole] ?? Radio;
-  const links = navByRole[activeRole] ?? navByRole.artist;
+  const currentRole = activeRole ?? "artist";
+  const RoleIcon = roleIcon[currentRole] ?? Radio;
+  const links = navByRole[currentRole] ?? navByRole.artist;
 
   return (
     <div className="min-h-screen flex">
@@ -48,6 +51,33 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         <div className="p-4 border-b border-border/40">
           <Link to="/" className="text-lg font-bold text-gradient">SURFACED RADIO</Link>
         </div>
+
+        {/* Role Toggle */}
+        {roles.length > 1 && (
+          <div className="px-3 pt-3 pb-1">
+            <div className="flex rounded-lg bg-secondary/50 p-1 gap-1">
+              {roles.map((r) => {
+                const Icon = roleIcon[r] ?? Radio;
+                return (
+                  <button
+                    key={r}
+                    onClick={() => { setActiveRole(r); navigate("/dashboard"); }}
+                    className={cn(
+                      "flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md text-xs font-medium transition-all",
+                      currentRole === r
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    )}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    {roleLabel[r]}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         <nav className="flex-1 p-3 space-y-1">
           {links.map((l) => (
             <Link
@@ -68,7 +98,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         <div className="p-4 border-t border-border/40 space-y-3">
           <div className="flex items-center gap-2 text-sm">
             <RoleIcon className="w-4 h-4 text-primary" />
-            <span className="capitalize text-muted-foreground">{activeRole === "dj" ? "DJ" : activeRole}</span>
+            <span className="capitalize text-muted-foreground">{roleLabel[currentRole]}</span>
           </div>
           <Button
             variant="ghost"

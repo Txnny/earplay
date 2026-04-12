@@ -1,12 +1,11 @@
-import { useAuth } from "@/hooks/useAuth";
+import { useActiveRole } from "@/hooks/useActiveRole";
 import DashboardLayout from "@/components/DashboardLayout";
 import ArtistOverview from "@/components/dashboards/ArtistOverview";
 import DJOverview from "@/components/dashboards/DJOverview";
 import AdminOverview from "@/components/dashboards/AdminOverview";
 
 export default function Dashboard() {
-  const { roles } = useAuth();
-  const activeRole = roles[0];
+  const { activeRole } = useActiveRole();
 
   return (
     <DashboardLayout>
