@@ -22,29 +22,40 @@ export default function SubmitTrack() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user || !file) return;
+    if (!user) { toast.error("You must be logged in"); return; }
+    if (!file) { toast.error("Please select an audio file"); return; }
+    if (!title.trim()) { toast.error("Please enter a track title"); return; }
     setLoading(true);
 
     try {
-      // Upload file
-      const filePath = `${user.id}/${Date.now()}-${file.name}`;
-      const { error: uploadErr } = await supabase.storage.from("tracks").upload(filePath, file);
-      if (uploadErr) throw uploadErr;
+      // Upload file to storage
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const filePath = `${user.id}/${Date.now()}-${safeName}`;
+      const { error: uploadErr } = await supabase.storage
+        .from("tracks")
+        .upload(filePath, file, { cacheControl: "3600", upsert: false });
+      if (uploadErr) {
+        console.error("Storage upload error:", uploadErr);
+        throw new Error(`File upload failed: ${uploadErr.message}`);
+      }
 
       // Create track record
       const { error: trackErr } = await supabase.from("tracks").insert({
         artist_id: user.id,
-        title,
-        genre: genre || null,
+        title: title.trim(),
+        genre: genre.trim() || null,
         file_url: filePath,
-        notes: notes || null,
+        notes: notes.trim() || null,
       });
-      if (trackErr) throw trackErr;
+      if (trackErr) {
+        console.error("Track insert error:", trackErr);
+        throw new Error(`Track submission failed: ${trackErr.message}`);
+      }
 
       toast.success("Track submitted for review!");
       navigate("/dashboard/tracks");
     } catch (err: any) {
-      toast.error(err.message);
+      toast.error(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
