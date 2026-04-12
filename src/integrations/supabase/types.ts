@@ -130,6 +130,7 @@ export type Database = {
           now_playing: string | null
           playlist_id: string | null
           starts_at: string
+          station_shortcode: string | null
           stream_url: string | null
           title: string
         }
@@ -143,6 +144,7 @@ export type Database = {
           now_playing?: string | null
           playlist_id?: string | null
           starts_at: string
+          station_shortcode?: string | null
           stream_url?: string | null
           title: string
         }
@@ -156,6 +158,7 @@ export type Database = {
           now_playing?: string | null
           playlist_id?: string | null
           starts_at?: string
+          station_shortcode?: string | null
           stream_url?: string | null
           title?: string
         }
@@ -171,27 +174,42 @@ export type Database = {
       }
       spins: {
         Row: {
+          artist: string | null
           duration_seconds: number | null
           id: string
           show_id: string | null
           source: string | null
+          source_label: string | null
           spun_at: string
+          started_at: string | null
+          station_shortcode: string | null
+          title: string | null
           track_id: string
         }
         Insert: {
+          artist?: string | null
           duration_seconds?: number | null
           id?: string
           show_id?: string | null
           source?: string | null
+          source_label?: string | null
           spun_at?: string
+          started_at?: string | null
+          station_shortcode?: string | null
+          title?: string | null
           track_id: string
         }
         Update: {
+          artist?: string | null
           duration_seconds?: number | null
           id?: string
           show_id?: string | null
           source?: string | null
+          source_label?: string | null
           spun_at?: string
+          started_at?: string | null
+          station_shortcode?: string | null
+          title?: string | null
           track_id?: string
         }
         Relationships: [
@@ -226,6 +244,39 @@ export type Database = {
           key?: string
           updated_at?: string
           value?: string
+        }
+        Relationships: []
+      }
+      station_sync_state: {
+        Row: {
+          created_at: string
+          id: string
+          last_ingested_spin_at: string | null
+          last_is_live: boolean | null
+          last_now_playing: string | null
+          last_polled_at: string | null
+          station_shortcode: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_ingested_spin_at?: string | null
+          last_is_live?: boolean | null
+          last_now_playing?: string | null
+          last_polled_at?: string | null
+          station_shortcode: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_ingested_spin_at?: string | null
+          last_is_live?: boolean | null
+          last_now_playing?: string | null
+          last_polled_at?: string | null
+          station_shortcode?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -265,6 +316,36 @@ export type Database = {
           status?: string
           submitted_at?: string
           title?: string
+        }
+        Relationships: []
+      }
+      unmatched_spin_events: {
+        Row: {
+          artist: string | null
+          created_at: string
+          id: string
+          raw_payload: Json | null
+          started_at: string | null
+          station_shortcode: string
+          title: string | null
+        }
+        Insert: {
+          artist?: string | null
+          created_at?: string
+          id?: string
+          raw_payload?: Json | null
+          started_at?: string | null
+          station_shortcode: string
+          title?: string | null
+        }
+        Update: {
+          artist?: string | null
+          created_at?: string
+          id?: string
+          raw_payload?: Json | null
+          started_at?: string | null
+          station_shortcode?: string
+          title?: string | null
         }
         Relationships: []
       }
