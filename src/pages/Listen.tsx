@@ -31,11 +31,7 @@ export default function ListenPage() {
     const fetchStatus = async () => {
       try {
         const res = await fetch(NOW_PLAYING_API, { cache: "no-store" });
-        const data: NowPlayingItem[] = await res.json();
-
-        const station = data.find(
-          (s) => s.station?.shortcode?.toLowerCase() === STATION_SHORTCODE
-        );
+        const station: NowPlayingItem = await res.json();
 
         if (!active || !station) return;
 
