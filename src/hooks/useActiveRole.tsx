@@ -33,6 +33,9 @@ export function ActiveRoleProvider({ children }: { children: ReactNode }) {
 
 export function useActiveRole() {
   const ctx = useContext(ActiveRoleContext);
-  if (!ctx) throw new Error("useActiveRole must be inside ActiveRoleProvider");
+  if (!ctx) {
+    // Fallback for HMR / transient render outside provider
+    return { activeRole: null, setActiveRole: () => {} } as ActiveRoleContextType;
+  }
   return ctx;
 }
