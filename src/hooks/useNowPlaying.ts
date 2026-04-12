@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API_URL = "https://stream.surfacedradio.com/api/nowplaying";
-const STATION = "selectsoundsradio";
+const API_URL = "https://stream.surfacedradio.com/api/nowplaying/selectsoundsradio";
 const POLL_INTERVAL = 30_000;
 
 export interface NowPlayingData {
@@ -20,10 +19,7 @@ export function useNowPlaying() {
     const fetchNowPlaying = async () => {
       try {
         const res = await fetch(API_URL);
-        const stations = await res.json();
-        const station = Array.isArray(stations)
-          ? stations.find((s: any) => s.station?.shortcode === STATION)
-          : null;
+        const station = await res.json();
         if (!station) return;
 
         const isOnAir = station.is_online === true || station.live?.is_live === true;

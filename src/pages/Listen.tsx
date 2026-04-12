@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 const STREAM_URL = "https://stream.surfacedradio.com/listen/selectsoundsradio/radio.mp3";
-const NOW_PLAYING_API = "https://stream.surfacedradio.com/api/nowplaying";
-const STATION_SHORTCODE = "selectsoundsradio";
+const NOW_PLAYING_API = "https://stream.surfacedradio.com/api/nowplaying/selectsoundsradio";
 
 type NowPlayingItem = {
   is_online?: boolean;
@@ -32,11 +31,7 @@ export default function ListenPage() {
     const fetchStatus = async () => {
       try {
         const res = await fetch(NOW_PLAYING_API, { cache: "no-store" });
-        const data: NowPlayingItem[] = await res.json();
-
-        const station = data.find(
-          (s) => s.station?.shortcode?.toLowerCase() === STATION_SHORTCODE
-        );
+        const station: NowPlayingItem = await res.json();
 
         if (!active || !station) return;
 
