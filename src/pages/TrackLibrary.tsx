@@ -8,11 +8,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Music, Plus } from "lucide-react";
+import AudioPreview from "@/components/AudioPreview";
 
 interface Track {
   id: string;
   title: string;
   genre: string | null;
+  file_url: string | null;
 }
 
 interface Playlist {
@@ -29,7 +31,7 @@ export default function TrackLibrary() {
 
   useEffect(() => {
     const load = async () => {
-      const { data: t } = await supabase.from("tracks").select("id, title, genre").eq("status", "approved");
+      const { data: t } = await supabase.from("tracks").select("id, title, genre, file_url").eq("status", "approved");
       setTracks(t ?? []);
       if (user) {
         const { data: p } = await supabase.from("playlists").select("id, name").eq("dj_id", user.id);
@@ -65,6 +67,7 @@ export default function TrackLibrary() {
                 <TableRow>
                   <TableHead>Title</TableHead>
                   <TableHead>Genre</TableHead>
+                  <TableHead>Preview</TableHead>
                   <TableHead className="w-24"></TableHead>
                 </TableRow>
               </TableHeader>
@@ -73,6 +76,7 @@ export default function TrackLibrary() {
                   <TableRow key={t.id}>
                     <TableCell className="font-medium">{t.title}</TableCell>
                     <TableCell className="text-muted-foreground">{t.genre ?? "—"}</TableCell>
+                    <TableCell><AudioPreview fileUrl={t.file_url} compact /></TableCell>
                     <TableCell>
                       <Dialog open={addingTrack === t.id} onOpenChange={(o) => setAddingTrack(o ? t.id : null)}>
                         <DialogTrigger asChild>
